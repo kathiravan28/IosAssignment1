@@ -16,12 +16,6 @@ class RowsModel {
     
     init?(dictionary :[String : Any]) {
         
-        //        guard let name = dictionary["title"] as? String,
-        //            let description = dictionary["description"], let photoURL = dictionary["imageHref"] as? String else {
-        //                return nil
-        //        }
-        
-        
         if let name = dictionary["title"] as? String {
             self.name = name
         }
@@ -37,7 +31,6 @@ class RowsModel {
     }
     
     init(viewModel :RowViewModelItem) {
-        
         
         self.name = viewModel.name
         self.photoURL = viewModel.photoURL

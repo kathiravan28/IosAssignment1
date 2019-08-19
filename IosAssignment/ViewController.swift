@@ -9,23 +9,60 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    
+   
+    var refreshControl = UIRefreshControl()
     var myTableView: UITableView  = UITableView()
     private var webservice :APILayer!
     private var sourceListViewModel :ProfileViewModel!
     private var items :[RowsModel]!
     private var dataSource :TableViewDataSource<CustomTableViewCell,RowsModel>!
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableViewUI()
-        
+        addRefreshControl()
         updateUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if CheckInternet.Connection(){
+            self.Alert(Message: "Connected")
+        }
+        else{
+            self.Alert(Message: "Your Device is not connected with internet")
+        }
         
     }
+    
+    func Alert (Message: String){
+        
+        let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    func addRefreshControl() {
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.red
+        refreshControl.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        myTableView.addSubview(refreshControl)
+        
+        
+    }
+    
+    @objc func refreshList() {
+        
+        refreshControl.endRefreshing()
+        myTableView.reloadData()
+    }
+    
     
     func tableViewUI() {
         
@@ -51,11 +88,14 @@ class ViewController: UIViewController {
         self.webservice.loadSources { (Rows) in
             self.sourceListViewModel = ProfileViewModel(webservice: self.webservice)
             self.sourceListViewModel.sourceViewModels = Rows
+            
+            
+           // self.setNavBar(title: ro)
+            
             self.updateDataSource()
         }
         
     }
-    
     private func updateDataSource() {
         
         self.dataSource = TableViewDataSource(cellIdentifier: "r_id", items: self.sourceListViewModel.sourceViewModels) { cell, vm in
@@ -91,10 +131,7 @@ class ViewController: UIViewController {
             self.myTableView.dataSource = self.dataSource
             self.myTableView.reloadData()
         }
-        //        self.myTableView.dataSource = self.dataSource
-        //        self.myTableView.reloadData()
         
-        //
     }
     
     func setNavBar(title: String) {
@@ -105,7 +142,6 @@ class ViewController: UIViewController {
 extension UIImageView {
     
     func downloadImageFrom(_ link:String, contentMode: UIView.ContentMode) {
-        
         
         
         URLSession.shared.dataTask( with: URL(string:link)!, completionHandler: {
