@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9266471E230A5E5C003BCD13 /* Canada.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266471D230A5E5C003BCD13 /* Canada.swift */; };
+		92664720230A5E6C003BCD13 /* RowsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9266471F230A5E6C003BCD13 /* RowsModel.swift */; };
+		92664723230A5E92003BCD13 /* APILayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664722230A5E92003BCD13 /* APILayer.swift */; };
+		92664726230A5EC0003BCD13 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664725230A5EC0003BCD13 /* ProfileViewModel.swift */; };
+		92664728230A5ED5003BCD13 /* RowViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92664727230A5ED5003BCD13 /* RowViewModelItem.swift */; };
 		92F9B493230A39F40085D033 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9B492230A39F40085D033 /* AppDelegate.swift */; };
 		92F9B495230A39F40085D033 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9B494230A39F40085D033 /* ViewController.swift */; };
 		92F9B498230A39F40085D033 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F9B496230A39F40085D033 /* Main.storyboard */; };
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9266471D230A5E5C003BCD13 /* Canada.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canada.swift; sourceTree = "<group>"; };
+		9266471F230A5E6C003BCD13 /* RowsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowsModel.swift; sourceTree = "<group>"; };
+		92664722230A5E92003BCD13 /* APILayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILayer.swift; sourceTree = "<group>"; };
+		92664725230A5EC0003BCD13 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		92664727230A5ED5003BCD13 /* RowViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowViewModelItem.swift; sourceTree = "<group>"; };
 		92F9B48F230A39F40085D033 /* IosAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IosAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F9B492230A39F40085D033 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92F9B494230A39F40085D033 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +88,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9266471C230A5E1D003BCD13 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9266471D230A5E5C003BCD13 /* Canada.swift */,
+				9266471F230A5E6C003BCD13 /* RowsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92664721230A5E74003BCD13 /* APILayer */ = {
+			isa = PBXGroup;
+			children = (
+				92664722230A5E92003BCD13 /* APILayer.swift */,
+			);
+			path = APILayer;
+			sourceTree = "<group>";
+		};
+		92664724230A5EA3003BCD13 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				92664725230A5EC0003BCD13 /* ProfileViewModel.swift */,
+				92664727230A5ED5003BCD13 /* RowViewModelItem.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		92F9B486230A39F30085D033 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +137,9 @@
 		92F9B491230A39F40085D033 /* IosAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				92664724230A5EA3003BCD13 /* ViewModel */,
+				92664721230A5E74003BCD13 /* APILayer */,
+				9266471C230A5E1D003BCD13 /* Model */,
 				92F9B4C6230A56AA0085D033 /* DataSource */,
 				92F9B492230A39F40085D033 /* AppDelegate.swift */,
 				92F9B494230A39F40085D033 /* ViewController.swift */,
@@ -272,8 +311,13 @@
 			files = (
 				92F9B495230A39F40085D033 /* ViewController.swift in Sources */,
 				92F9B4C5230A56170085D033 /* CustomTableViewCell.swift in Sources */,
+				92664720230A5E6C003BCD13 /* RowsModel.swift in Sources */,
 				92F9B4C8230A56C00085D033 /* DataSource.swift in Sources */,
+				92664723230A5E92003BCD13 /* APILayer.swift in Sources */,
 				92F9B493230A39F40085D033 /* AppDelegate.swift in Sources */,
+				92664726230A5EC0003BCD13 /* ProfileViewModel.swift in Sources */,
+				92664728230A5ED5003BCD13 /* RowViewModelItem.swift in Sources */,
+				9266471E230A5E5C003BCD13 /* Canada.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
