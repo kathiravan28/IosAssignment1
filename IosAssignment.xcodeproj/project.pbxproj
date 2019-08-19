@@ -143,11 +143,11 @@
 				92F9B4C6230A56AA0085D033 /* DataSource */,
 				92F9B492230A39F40085D033 /* AppDelegate.swift */,
 				92F9B494230A39F40085D033 /* ViewController.swift */,
+				92F9B4C4230A56170085D033 /* CustomTableViewCell.swift */,
 				92F9B496230A39F40085D033 /* Main.storyboard */,
 				92F9B499230A39F40085D033 /* Assets.xcassets */,
 				92F9B49B230A39F40085D033 /* LaunchScreen.storyboard */,
 				92F9B49E230A39F40085D033 /* Info.plist */,
-				92F9B4C4230A56170085D033 /* CustomTableViewCell.swift */,
 			);
 			path = IosAssignment;
 			sourceTree = "<group>";

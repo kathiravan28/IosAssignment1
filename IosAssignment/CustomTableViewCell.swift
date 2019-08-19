@@ -8,13 +8,6 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     class CustomTableViewCell: UITableViewCell {
         var namelbl = UILabel()
         var desclbl = UILabel()
@@ -60,6 +53,11 @@ class CustomTableViewCell: UITableViewCell {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-}
+
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 
 }
