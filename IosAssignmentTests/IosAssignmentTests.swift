@@ -10,12 +10,17 @@ import XCTest
 @testable import IosAssignment
 
 class IosAssignmentTests: XCTestCase {
+     var viewControllerUnderTest: ViewController!
+    
     
      var sut: URLSession!
 
     override func setUp() {
          super.setUp()
          sut = URLSession(configuration: .default)
+        
+       
+        
     }
 
     override func tearDown() {
@@ -34,6 +39,8 @@ class IosAssignmentTests: XCTestCase {
         }
     }
     
+   
+
     func testValidCallToiTunesGetsHTTPStatusCode200() {
      
         let url =

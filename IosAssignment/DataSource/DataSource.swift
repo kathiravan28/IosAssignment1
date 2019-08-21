@@ -27,10 +27,10 @@ class TableViewDataSource<Cell :UITableViewCell,RowsModel> : NSObject, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! Cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? Cell
         let item = self.items[indexPath.row]
-        self.configureCell(cell,item)
-        return cell
+        self.configureCell(cell!,item)
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

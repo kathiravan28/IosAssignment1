@@ -33,18 +33,18 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if CheckInternet.Connection(){
-            self.Alert(Message: "Connected")
+        if CheckInternet.connection() {
+            self.alert(message: "Connected")
         }
-        else{
-            self.Alert(Message: "Your Device is not connected with internet")
+        else {
+            self.alert(message: "Your Device is not connected with internet")
         }
         
     }
     
-    func Alert (Message: String){
+    func alert (message: String) {
         
-        let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
@@ -88,9 +88,9 @@ class ViewController: UIViewController {
         
         self.webservice = APILayer()
         
-        self.webservice.loadSources { (Rows) in
+        self.webservice.loadSources { (rows) in
             self.sourceListViewModel = ProfileViewModel(webservice: self.webservice)
-            self.sourceListViewModel.sourceViewModels = Rows
+            self.sourceListViewModel.sourceViewModels = rows
             
             
            // self.setNavBar(title: ro)
@@ -106,13 +106,13 @@ class ViewController: UIViewController {
             
             if vm.name != nil {
                 cell.namelbl.text = vm.name
-            }else{
+            }else {
                 cell.namelbl.text = "No Name"
             }
             
             if vm.description != nil {
                 cell.desclbl.text = vm.description
-            }else{
+            }else {
                 cell.namelbl.text = "No Name"
             }
             
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
                 
                 
                 
-            }else{
+            }else {
                 // print(vm.photoURL)
                 cell.userImage.image = UIImage(named: "F1")
                 cell.userImage.image =  UIImage(named: "F1.jpg", in: Bundle(for: ViewController.self), compatibleWith: nil)
@@ -145,7 +145,7 @@ class ViewController: UIViewController {
     func setUp() {
         let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
         
-        web().getArticles(url: url) { (tit) in
+        Web().getArticles(url: url) { (tit) in
             
             print(tit!)
             
@@ -170,9 +170,9 @@ extension UIImageView {
             
             
             
-            print(error?.localizedDescription)
+//            print(error?.localizedDescription)
             
-            DispatchQueue.main.async  {
+            DispatchQueue.main.async {
                 
                 self.contentMode =  contentMode
                 

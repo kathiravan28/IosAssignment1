@@ -1,0 +1,22 @@
+line_length:
+ - 200 # warning
+ - 300 # error
+
+disabled_rules:
+ - trailing_newline
+ - brace_spacing
+ - statement_position
+ - identifier_name
+ - void_return
+ - vertical_whitespace
+ - trailing_whitespace
+ - force_cast
+ - colon
+ - comma
+ - control_statement
+ 
+
+opt_in_rules:
+ - empty_count
+
+
