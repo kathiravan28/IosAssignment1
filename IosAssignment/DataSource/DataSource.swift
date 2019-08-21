@@ -34,6 +34,6 @@ class TableViewDataSource<Cell :UITableViewCell,RowsModel> : NSObject, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 118
+        return UITableView.automaticDimension
     }
 }

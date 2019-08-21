@@ -9,7 +9,6 @@
 import Foundation
 class RowsModel {
     
-    
     var name :String!
     var photoURL :String!
     var description :String!
@@ -29,12 +28,5 @@ class RowsModel {
         }
         
     }
-    
-    init(viewModel :RowViewModelItem) {
         
-        self.name = viewModel.name
-        self.photoURL = viewModel.photoURL
-        self.description = viewModel.description
-    }
-    
 }

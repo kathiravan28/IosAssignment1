@@ -13,18 +13,22 @@ class ViewController: UIViewController {
     var refreshControl = UIRefreshControl()
     var myTableView: UITableView  = UITableView()
     private var webservice :APILayer!
+    
     private var sourceListViewModel :ProfileViewModel!
     private var items :[RowsModel]!
     private var dataSource :TableViewDataSource<CustomTableViewCell,RowsModel>!
+    var titleValue: String = ""
    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setUp()
         tableViewUI()
         addRefreshControl()
         updateUI()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +84,6 @@ class ViewController: UIViewController {
         myTableView.rowHeight = UITableView.automaticDimension
     }
     
-    
     private func updateUI() {
         
         self.webservice = APILayer()
@@ -96,6 +99,7 @@ class ViewController: UIViewController {
         }
         
     }
+
     private func updateDataSource() {
         
         self.dataSource = TableViewDataSource(cellIdentifier: "r_id", items: self.sourceListViewModel.sourceViewModels) { cell, vm in
@@ -127,7 +131,7 @@ class ViewController: UIViewController {
            
         }
         DispatchQueue.main.async {
-            self.setNavBar(title: "About canada")
+            self.setNavBar(title: self.titleValue)
             self.myTableView.dataSource = self.dataSource
             self.myTableView.reloadData()
         }
@@ -136,6 +140,22 @@ class ViewController: UIViewController {
     
     func setNavBar(title: String) {
         self.navigationItem.title = title
+    }
+    
+    func setUp() {
+        let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
+        
+        web().getArticles(url: url) { (tit) in
+            
+            print(tit!)
+            
+            if let tit = tit {
+                
+            self.titleValue = tit
+                
+            }
+        }
+        
     }
     
 }

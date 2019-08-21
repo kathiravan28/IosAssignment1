@@ -43,3 +43,34 @@ class APILayer {
         
     }
 }
+
+class web{
+    
+    func getArticles(url: URL, completion: @escaping(String?) -> ()) {
+        
+        URLSession.shared.dataTask(with: url) {data, response, error in
+            
+            if let error = error {
+                
+                print(error.localizedDescription)
+            }
+            else if let data = data {
+                let strISOLatin = String(data: data, encoding: .isoLatin1)
+                let dataUTF8 = strISOLatin?.data(using: .utf8)
+                
+                
+                if let dataUTF8 = dataUTF8 {
+                    let rowList = try! JSONDecoder().decode(Row.self, from: dataUTF8)
+                    
+                    
+                    completion(rowList.title)
+                    
+
+                }
+            }
+            
+            }.resume()
+        
+    }
+    
+}
