@@ -11,5 +11,4 @@ import Foundation
 struct Row : Decodable {
     
     let title: String
-    
 }

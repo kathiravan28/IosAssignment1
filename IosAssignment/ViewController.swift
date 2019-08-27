@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
    
     var refreshControl = UIRefreshControl()
+    var indicator = UIActivityIndicatorView()
+    
     var myTableView: UITableView  = UITableView()
     private var webservice :APILayer!
     
@@ -28,45 +30,28 @@ class ViewController: UIViewController {
         tableViewUI()
         addRefreshControl()
         updateUI()
-        
     }
+   override func viewDidAppear(_ animated: Bool) {
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        if CheckInternet.connection() {
-            self.alert(message: "Connected")
-        }
-        else {
-            self.alert(message: "Your Device is not connected with internet")
-        }
-        
+    activityIndicator()
+    self.indicator.isHidden = false
+    self.myTableView.isHidden = true
+    self.indicator.startAnimating()
     }
-    
-    func alert (message: String) {
-        
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
-        
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.whiteLarge
+        indicator.color = .red
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
     }
-    
     func addRefreshControl() {
         
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.red
-        refreshControl.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(ViewController.updateUI), for: .valueChanged)
         myTableView.addSubview(refreshControl)
-        
-        
-    }
-    
-    @objc func refreshList() {
-        
-        refreshControl.endRefreshing()
-        myTableView.reloadData()
-    }
-    
+        }
     
     func tableViewUI() {
         
@@ -84,23 +69,19 @@ class ViewController: UIViewController {
         myTableView.rowHeight = UITableView.automaticDimension
     }
     
-    private func updateUI() {
+    @objc private func updateUI() {
         
         self.webservice = APILayer()
         
         self.webservice.loadSources { (rows) in
             self.sourceListViewModel = ProfileViewModel(webservice: self.webservice)
             self.sourceListViewModel.sourceViewModels = rows
-            
-            
-           // self.setNavBar(title: ro)
-            
             self.updateDataSource()
         }
         
     }
 
-    private func updateDataSource() {
+    @objc private func updateDataSource() {
         
         self.dataSource = TableViewDataSource(cellIdentifier: "r_id", items: self.sourceListViewModel.sourceViewModels) { cell, vm in
             
@@ -123,7 +104,6 @@ class ViewController: UIViewController {
                 
                 
             }else {
-                // print(vm.photoURL)
                 cell.userImage.image = UIImage(named: "F1")
                 cell.userImage.image =  UIImage(named: "F1.jpg", in: Bundle(for: ViewController.self), compatibleWith: nil)
                 
@@ -131,9 +111,13 @@ class ViewController: UIViewController {
            
         }
         DispatchQueue.main.async {
+            self.indicator.isHidden = true
+            self.myTableView.isHidden = false
+            self.indicator.stopAnimating()
             self.setNavBar(title: self.titleValue)
             self.myTableView.dataSource = self.dataSource
             self.myTableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
         
     }
@@ -168,10 +152,6 @@ extension UIImageView {
             
             (data, response, error) -> Void in
             
-            
-            
-//            print(error?.localizedDescription)
-            
             DispatchQueue.main.async {
                 
                 self.contentMode =  contentMode
@@ -179,9 +159,7 @@ extension UIImageView {
                 if let data = data {
                     
                     self.image = UIImage(data: data)
-                    
-                    
-                    
+
                 }
                 
             }

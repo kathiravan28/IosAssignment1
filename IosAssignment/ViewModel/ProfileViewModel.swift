@@ -21,6 +21,4 @@ class ProfileViewModel: NSObject {
     }
 }
 
-//protocol ProfileViewModelItem {
-//    var sectionTitle: String { get }
-//}
+
