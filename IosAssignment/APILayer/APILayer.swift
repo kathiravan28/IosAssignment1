@@ -45,7 +45,9 @@ class APILayer {
 
 class Web {
     
-    func getArticles(url: URL, completion: @escaping(String?) -> ()) {
+    func getArticles(completion: @escaping(String?) -> ()) {
+        
+        let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
         
         URLSession.shared.dataTask(with: url) {data, response, error in
             

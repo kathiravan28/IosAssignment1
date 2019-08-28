@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     var myTableView: UITableView  = UITableView()
     private var webservice :APILayer!
-    
+    private var web :Web!
     private var sourceListViewModel :ProfileViewModel!
     private var items :[RowsModel]!
     private var dataSource :TableViewDataSource<CustomTableViewCell,RowsModel>!
@@ -127,9 +127,10 @@ class ViewController: UIViewController {
     }
     
     func setUp() {
-        let url = URL(string: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json")!
         
-        Web().getArticles(url: url) { (tit) in
+       self.web = Web()
+        
+        self.web.getArticles { (tit) in
             
             print(tit!)
             
