@@ -15,18 +15,16 @@ class ViewController: UIViewController {
     
     var myTableView: UITableView  = UITableView()
     private var webservice :APILayer!
-    private var web :Web!
     private var sourceListViewModel :ProfileViewModel!
     private var items :[RowsModel]!
     private var dataSource :TableViewDataSource<CustomTableViewCell,RowsModel>!
-    var titleValue: String = ""
+    
    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setUp()
         tableViewUI()
         addRefreshControl()
         updateUI()
@@ -114,7 +112,7 @@ class ViewController: UIViewController {
             self.indicator.isHidden = true
             self.myTableView.isHidden = false
             self.indicator.stopAnimating()
-            self.setNavBar(title: self.titleValue)
+            self.setNavBar(title: self.webservice.titleValue)
             self.myTableView.dataSource = self.dataSource
             self.myTableView.reloadData()
             self.refreshControl.endRefreshing()
@@ -124,23 +122,6 @@ class ViewController: UIViewController {
     
     func setNavBar(title: String) {
         self.navigationItem.title = title
-    }
-    
-    func setUp() {
-        
-       self.web = Web()
-        
-        self.web.getArticles { (tit) in
-            
-            print(tit!)
-            
-            if let tit = tit {
-                
-            self.titleValue = tit
-                
-            }
-        }
-        
     }
     
 }

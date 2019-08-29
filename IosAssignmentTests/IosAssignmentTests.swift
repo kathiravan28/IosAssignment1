@@ -12,20 +12,13 @@ import XCTest
 class IosAssignmentTests: XCTestCase {
      var viewControllerUnderTest: ViewController!
 
-    
-    
      var sut: URLSession!
 
     override func setUp() {
          super.setUp()
          sut = URLSession(configuration: .default)
-        
+        }
     
-        
-       
-        
-    }
-
     override func tearDown() {
           sut = nil
          super.tearDown()
@@ -41,9 +34,6 @@ class IosAssignmentTests: XCTestCase {
             
         }
     }
-    
-   
-
     func testValidCallToiTunesGetsHTTPStatusCode200() {
      
         let url =
